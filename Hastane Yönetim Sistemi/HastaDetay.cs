@@ -20,7 +20,6 @@ namespace Hastane_Yönetim_Sistemi
 
         private void HastaDetay_Load(object sender, EventArgs e)
         {
-            // ── Branş ComboBox – ID + Ad ──
             try
             {
                 DataTable dtBrans = new();
@@ -42,7 +41,6 @@ namespace Hastane_Yönetim_Sistemi
                 bgl.Baglanti().Close();
             }
 
-            // ── Doktor ComboBox – ID + Ad Soyad ──
             try
             {
                 DataTable dtDoktor = new();
@@ -73,23 +71,16 @@ namespace Hastane_Yönetim_Sistemi
                 cmbDoktor.SelectedIndex = 0;
             }
 
-            // Şikayet alanı max 250 karakter
             txtSikayet.MaxLength = 250;
 
-            // ── Her iki DataGridView'e modern tasarım uygula ──
             StilUygula(dgvAktifRandevular);
             StilUygula(dgvRandevuGecmisi);
 
-            // ── Aktif Randevular (Rd_durum = 1 / True) ──
             RandevuYukle(dgvAktifRandevular, 1);
 
-            // ── Randevu Geçmişi (Rd_durum = 0 / False) ──
             RandevuYukle(dgvRandevuGecmisi, 0);
         }
 
-        /// <summary>
-        /// DataGridView'e modern flat tasarım uygular
-        /// </summary>
         private void StilUygula(DataGridView dgv)
         {
             dgv.AutoGenerateColumns = false;
@@ -98,7 +89,6 @@ namespace Hastane_Yönetim_Sistemi
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgv.GridColor = Color.FromArgb(226, 232, 240);
 
-            // Başlık stili
             dgv.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.FromArgb(30, 58, 138),
@@ -109,7 +99,6 @@ namespace Hastane_Yönetim_Sistemi
             };
             dgv.ColumnHeadersHeight = 38;
 
-            // Satır stili
             dgv.DefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.White,
@@ -122,7 +111,6 @@ namespace Hastane_Yönetim_Sistemi
             };
             dgv.RowTemplate.Height = 36;
 
-            // Alternatif satır rengi (zebra efekti)
             dgv.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.FromArgb(248, 250, 252),
@@ -131,7 +119,6 @@ namespace Hastane_Yönetim_Sistemi
                 SelectionForeColor = Color.FromArgb(30, 41, 59)
             };
 
-            // Kolonları tanımla
             dgv.Columns.Clear();
             dgv.Columns.AddRange(new DataGridViewColumn[]
             {
@@ -144,10 +131,6 @@ namespace Hastane_Yönetim_Sistemi
             });
         }
 
-        /// <summary>
-        /// Randevu verilerini JOIN ile çekip DataGridView'e yükler
-        /// durumDeger: 1 = Aktif (True), 0 = Geçmiş (False)
-        /// </summary>
         private void RandevuYukle(DataGridView dgv, int durumDeger)
         {
             try
@@ -186,9 +169,6 @@ namespace Hastane_Yönetim_Sistemi
             }
         }
 
-        /// <summary>
-        /// Randevu Al butonu – yeni randevuyu DB'ye ekler ve gridleri yeniler
-        /// </summary>
         private void btnRandevuAl_Click(object sender, EventArgs e)
         {
             if (cmbBrans.SelectedIndex == -1 || cmbDoktor.SelectedIndex == -1)
@@ -209,7 +189,7 @@ namespace Hastane_Yönetim_Sistemi
                     cmd.Parameters.AddWithValue("@saat", DateTime.Now.ToString("HH:mm"));
                     cmd.Parameters.AddWithValue("@brans", cmbBrans.SelectedValue);
                     cmd.Parameters.AddWithValue("@doktor", cmbDoktor.SelectedValue);
-                    cmd.Parameters.AddWithValue("@durum", 1); // Aktif
+                    cmd.Parameters.AddWithValue("@durum", 1);
                     cmd.Parameters.AddWithValue("@tc", lblKisiTcDeger.Text);
                     cmd.Parameters.AddWithValue("@sikayet", txtSikayet.Text.Trim());
 
@@ -220,7 +200,6 @@ namespace Hastane_Yönetim_Sistemi
                         MessageBox.Show("Randevunuz başarıyla oluşturuldu!", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         txtSikayet.Clear();
 
-                        // Gridleri yenile
                         RandevuYukle(dgvAktifRandevular, 1);
                         RandevuYukle(dgvRandevuGecmisi, 0);
                     }
@@ -253,9 +232,6 @@ namespace Hastane_Yönetim_Sistemi
             hstg.Show();
         }
 
-        /// <summary>
-        /// Kişi bilgilerini veritabanından yeniden çekip label'ları günceller
-        /// </summary>
         private void KisiBilgileriniYenile()
         {
             try

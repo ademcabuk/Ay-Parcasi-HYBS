@@ -55,7 +55,6 @@ namespace Hastane_Yönetim_Sistemi
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgv.GridColor = Color.FromArgb(204, 251, 241);
 
-            // Başlık stili (Doktor paneli temasına uygun Teal/Yeşil tonu)
             dgv.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.FromArgb(17, 94, 89),
@@ -66,7 +65,6 @@ namespace Hastane_Yönetim_Sistemi
             };
             dgv.ColumnHeadersHeight = 38;
 
-            // Satır stili
             dgv.DefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.White,
@@ -79,7 +77,6 @@ namespace Hastane_Yönetim_Sistemi
             };
             dgv.RowTemplate.Height = 36;
 
-            // Alternatif satır rengi (zebra efekti)
             dgv.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.FromArgb(240, 253, 250),
@@ -88,7 +85,6 @@ namespace Hastane_Yönetim_Sistemi
                 SelectionForeColor = Color.FromArgb(17, 94, 89)
             };
 
-            // Kolonlar
             dgv.Columns.Clear();
             dgv.Columns.AddRange(new DataGridViewColumn[]
             {

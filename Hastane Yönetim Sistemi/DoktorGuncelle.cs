@@ -23,12 +23,10 @@ namespace Hastane_Yönetim_Sistemi
 
         private void DoktorGuncelle_Load(object? sender, EventArgs e)
         {
-            // TC değiştirilemez olsun
             mskTc.ReadOnly = true;
             mskTc.BackColor = Color.FromArgb(241, 245, 249);
             mskTc.TabStop = false;
 
-            // Branşları Tbl_Brans tablosundan çek
             try
             {
                 DataTable dtBrans = new();
@@ -50,7 +48,6 @@ namespace Hastane_Yönetim_Sistemi
                 bgl.Baglanti().Close();
             }
 
-            // Doktorun mevcut bilgilerini veritabanından çek ve doldur
             if (!string.IsNullOrWhiteSpace(mskTc.Text))
             {
                 try

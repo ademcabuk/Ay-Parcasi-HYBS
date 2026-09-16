@@ -45,7 +45,6 @@ namespace Hastane_Yönetim_Sistemi
                         MessageBox.Show("Giriş Başarılı!", "Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         HastaDetay hst = new();
 
-                        // Önce hasta bilgilerini çek
                         string adsoyad = "";
                         string telefon = "";
                         using (SqlCommand cmd2 = new SqlCommand("SELECT hst_ad, hst_soyad, hst_telefon FROM Tbl_Hastalar WHERE hst_tc = @tc", bgl.Baglanti()))
@@ -61,8 +60,6 @@ namespace Hastane_Yönetim_Sistemi
                             }
                         }
 
-                        // Label'lara değerleri Show()'dan ÖNCE ata
-                        // böylece HastaDetay_Load içindeki randevu sorgusu doğru TC ile çalışır
                         hst.lblKisiTcDeger.Text = mskTc.Text;
                         hst.lblKisiAdSoyadDeger.Text = adsoyad;
                         hst.lblKisiTelDeger.Text = telefon;

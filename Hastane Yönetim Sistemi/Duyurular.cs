@@ -33,7 +33,6 @@ namespace Hastane_Yönetim_Sistemi
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgv.GridColor = Color.FromArgb(226, 232, 240);
 
-            // Başlık stili
             dgv.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.FromArgb(15, 23, 42),
@@ -44,7 +43,6 @@ namespace Hastane_Yönetim_Sistemi
             };
             dgv.ColumnHeadersHeight = 40;
 
-            // Satır stili
             dgv.DefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.White,
@@ -57,7 +55,6 @@ namespace Hastane_Yönetim_Sistemi
             };
             dgv.RowTemplate.Height = 38;
 
-            // Alternatif satır rengi
             dgv.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.FromArgb(248, 250, 252),
@@ -66,7 +63,6 @@ namespace Hastane_Yönetim_Sistemi
                 SelectionForeColor = Color.FromArgb(15, 23, 42)
             };
 
-            // Kolonlar
             dgv.Columns.Clear();
             dgv.Columns.AddRange(new DataGridViewColumn[]
             {

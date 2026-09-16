@@ -31,23 +31,18 @@ namespace Hastane_Yönetim_Sistemi
 
         private void SekreterDetay_Load(object? sender, EventArgs e)
         {
-            // Duyuru metin sınırı 300 karakter
             rtxtDuyuru.MaxLength = 300;
 
-            // Saat picker formatı sadece saat ve dakika (HH:mm)
             dtpSaat.Format = DateTimePickerFormat.Custom;
             dtpSaat.CustomFormat = "HH:mm";
             dtpSaat.ShowUpDown = true;
 
-            // Gridlerin modern tasarımı
             StilUygula(dgvBranslar);
             StilUygula(dgvDoktorlar);
 
-            // Kolonları ayarla
             BransKolonlariniAyarla();
             DoktorKolonlariniAyarla();
 
-            // Verileri yükle
             SekreterBilgileriniYukle();
             BranslariYukle();
             DoktorlariYukle();
@@ -62,7 +57,6 @@ namespace Hastane_Yönetim_Sistemi
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dgv.GridColor = Color.FromArgb(204, 251, 241);
 
-            // Başlık stili (Teal/Yeşil hastane teması)
             dgv.ColumnHeadersDefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.FromArgb(17, 94, 89),
@@ -73,7 +67,6 @@ namespace Hastane_Yönetim_Sistemi
             };
             dgv.ColumnHeadersHeight = 36;
 
-            // Satır stili
             dgv.DefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.White,
@@ -86,7 +79,6 @@ namespace Hastane_Yönetim_Sistemi
             };
             dgv.RowTemplate.Height = 34;
 
-            // Alternatif satır rengi (zebra)
             dgv.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle
             {
                 BackColor = Color.FromArgb(240, 253, 250),
@@ -407,7 +399,7 @@ namespace Hastane_Yönetim_Sistemi
 
             try
             {
-                string tarih = DateTime.Now.ToString("dd.MM.yyyy"); // 10 karakter formatı (örn: 16.02.2026)
+                string tarih = DateTime.Now.ToString("dd.MM.yyyy");
                 string sorgu = "INSERT INTO Tbl_Duyurular (duyuru_mesaj, duyuru_tarih) VALUES (@mesaj, @tarih)";
 
                 using (SqlCommand cmd = new(sorgu, bgl.Baglanti()))
